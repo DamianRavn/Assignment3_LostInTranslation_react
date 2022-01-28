@@ -20,7 +20,7 @@ In this project we Build an online sign language translator as a Single Page App
 
 ### Executing program
 
-* 'npm run dev' to run on localhost
+* 'npm start' to run on localhost
 
 ## Help
 
