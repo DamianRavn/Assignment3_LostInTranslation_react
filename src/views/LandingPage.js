@@ -1,10 +1,10 @@
 import { React } from "react";
 
-function Home(props)
+function LandingPage(props)
 {
     return(
         <div>Home</div>
     );
 }
 
-export default Home;
+export default LandingPage;

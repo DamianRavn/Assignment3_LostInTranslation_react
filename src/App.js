@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./views/Home.js";
+import Home from "./views/LandingPage.js";
 import Translation from "./views/Translation";
 import Profile from "./views/Profile.js";
-import NotFound from "./views/NotFound.js";
+import NotFound from "./Components/NotFound/NotFound.js";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
       <div className="App">
       <Routes>
         <Route path="/" element={ <Home />} />
-        <Route path="/Translation" element={ <Translation/> } />
-        <Route path="/Profile" element={ <Profile/> } />
+        <Route path="/translation" element={ <Translation/> } />
+        <Route path="/profile" element={ <Profile/> } />
         <Route path="*" element={ <NotFound/> } />
       </Routes>
       </div>
