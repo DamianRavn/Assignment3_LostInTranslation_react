@@ -1,12 +1,20 @@
 import { React } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../features/user.js";
+import { fetchUser, setUserName } from "../features/user.js";
+import InputAsyncCallComponent from "../Components/InputAsyncCallComponent.js"
+
+const handleUserClick = (dispatch, username)=>
+{
+    dispatch(setUserName(username));
+    dispatch(fetchUser(username));
+}
 
 function LandingPage(props)
 {
-    const dispatch = useDispatch();
     return(
-        <div>Home</div>
+        <div>
+            <div>Home</div>
+            <InputAsyncCallComponent clickHandler = {handleUserClick} />
+        </div>
     );
 }
 
