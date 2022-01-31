@@ -4,7 +4,7 @@ import Home from "./views/LandingPage.js";
 import Translation from "./views/Translation";
 import Profile from "./views/Profile.js";
 import NotFound from "./Components/NotFound/NotFound.js";
-import Header from './views/HeaderUser';
+import Header from "./views/Header";
 
 function App() {
   return (
