@@ -8,7 +8,7 @@ import store from "./store.js";
 
 import App from './App.js';
 
-import 'bootstrap/dist/css/boostrap.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
