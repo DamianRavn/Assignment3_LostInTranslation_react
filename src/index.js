@@ -8,6 +8,8 @@ import store from "./store.js";
 
 import App from './App.js';
 
+import 'bootstrap/dist/css/boostrap.min.js';
+
 
 
 const rootElement = document.getElementById('root');
