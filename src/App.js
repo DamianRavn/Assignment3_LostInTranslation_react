@@ -4,17 +4,19 @@ import Home from "./views/LandingPage.js";
 import Translation from "./views/Translation";
 import Profile from "./views/Profile.js";
 import NotFound from "./Components/NotFound/NotFound.js";
+import Header from './views/HeaderUser';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <Routes>
-        <Route path="/" element={ <Home />} />
-        <Route path="/translation" element={ <Translation/> } />
-        <Route path="/profile" element={ <Profile/> } />
-        <Route path="*" element={ <NotFound/> } />
-      </Routes>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/translation" element={<Translation />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </BrowserRouter>
   );
