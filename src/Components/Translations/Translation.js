@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 
 const Translation = (props) => {
     const [translation, setTranslation] = useState("");
+    const [translatedSentence, setTrancelatedSentence] = useState([]);
     const dispatch = useDispatch();
-    const imageSource = "../../assets/images/signs/";
-    let translatedSentence = [];
+    const imageSource = "assets/images/signs/";
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -16,53 +16,43 @@ const Translation = (props) => {
     const handleTranslation = (sentence) => {
         sentence = sentence.toString().trim().toLowerCase();
         let translatedLetter = '';
-        translatedSentence = [];
-        for(let index = 0; index < sentence.length; index++) {
-            if(sentence.charAt(index) !== ' ') {
+        sentence.toString().toLowerCase();
+        for (let index = 0; index < sentence.length; index++) {
+            if (/([a-z])/g) {
                 translatedLetter = sentence.charAt(index) + '.png';
-                translatedSentence.push(<img src={imageSource + translatedLetter} alt=" "/>)
             }
-            //translatedSentence.push(translatedLetter)
+
+            translatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter });
         }
         
-        //for(const [value] of translatedSentence.entries()) {
-        //    images.push(<img src={imageSource + value} alt=" "/>)
-        //}
     }
-
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="translation">Sentence you would like to translate</label>
-            <input 
-                id="translation"
-                type="text"
-                placeholder="Enter sentence..."
-                className="form-control"
-                onChange={(event) => setTranslation(event.target.value)}
-            />
+        <>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="translation">Sentence you would like to translate</label>
+                <input
+                    id="translation"
+                    type="text"
+                    placeholder="Enter sentence..."
+                    className="form-control" 
+                    onChange={(event) => setTranslation(event.target.value)}
+                />
 
-            <button 
-                type="submit" 
-                className="btn btn-success btn-lg" 
-                onClick={() =>
-                    props.clickHandler(dispatch, translation)
-                }>
+                <button
+                    type="submit"
+                    className="btn btn-success btn-lg"
+                    onClick={() => handleSubmit(dispatch, translation)}>
                     Translate
-            </button>
+                </button>
+            </form>
             <div>
-                {translatedSentence}
-                {/*
-                <ul>
-                    {translatedSentence.map((value, index) => {
-                        return <li key={index}>{value}</li>
-                    })}
-                </ul>
-                */}
+                {translatedSentence.map((letter) => {
+                    return <img className='handsigns' key={letter.id} src={letter.src + letter.letter} />
+                })}
             </div>
-        </form>
+        </>
     )
 
 }
 
 export default Translation;
-        
