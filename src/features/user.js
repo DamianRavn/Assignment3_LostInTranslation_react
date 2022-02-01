@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const apiURL = 'https://assignment3-react.herokuapp.com'
-const apiKey = "ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxztvyllhqfhceqcfyznwtuzuyyv";
+const apiURL =  'https://experis-assignment-api.herokuapp.com/' //'https://assignment3-react.herokuapp.com'
+const apiKey = 'floppy-vitamin-cloud' //"ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxztvyllhqfhceqcfyznwtuzuyyv";
 
 //fetches user from api. Using redux toolkit thunk middleware
 export const fetchUser = createAsyncThunk('user/fetchUser',
@@ -17,11 +17,10 @@ async (username) =>
     return fetch(`${apiURL}/translation`, 
     {
         method: 'POST',
-        mode: 'no-cors',
         headers: 
-        {
+        { 
             'X-API-Key': apiKey,
-            'Content-Type': 'application/json',
+           'Content-Type': 'application/json'
         },
         body: JSON.stringify
         ({ 
