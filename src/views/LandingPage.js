@@ -16,6 +16,9 @@ function LandingPage(props)
             <div>
                 <h1 className="animate__animated animate__wobble">Welcome to the Translatron!</h1>
             </div> 
+        <div>
+            <div>Home</div>
+            <InputAsyncCallComponent clickHandler = {handleUserClick} placeholder = "Input Username here" />
         </div>
         <div className="containter text-center d-flex align-item-center justify-content-center mt-3">
         <InputAsyncCallComponent clickHandler = {handleUserClick} />
