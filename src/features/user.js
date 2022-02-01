@@ -7,14 +7,14 @@ const apiKey = 'floppy-vitamin-cloud' //"ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxz
 export const fetchUser = createAsyncThunk('user/fetchUser',
     async (username) => 
     {
-        return fetch(`${apiURL}/translation?username=${username}`).then((res) => res.json);
+        return fetch(`${apiURL}/translations?username=${username}`).then((res) => res.json);
     });
 
 //creates user from api. Using redux toolkit thunk middleware
 export const createUser = createAsyncThunk('user/createUser',
 async (username) => 
 {
-    return fetch(`${apiURL}/translation`, 
+    return fetch(`${apiURL}/translations`, 
     {
         method: 'POST',
         headers: 
