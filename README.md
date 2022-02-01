@@ -22,6 +22,11 @@ In this project we Build an online sign language translator as a Single Page App
 
 * After running install, simply run 'npm start' while still in the root folder, to run the SPA.
 
+### Online Deployment
+
+
+* To see a deployet version of this SPA, please head to https://assignment3-react.herokuapp.com/
+
 ## Help
 
 Contact [@DamianRavn](https://github.com/DamianRavn), [@qitsuk](https://github.com/qitsuk) or [@Epiko1994](https://github.com/Epiko1994) if something goes wrong.
