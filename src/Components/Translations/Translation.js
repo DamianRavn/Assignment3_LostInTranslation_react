@@ -14,17 +14,24 @@ const Translation = (props) => {
     }
 
     const handleTranslation = (sentence) => {
+        if (translatedSentence.length > 0) {
+            translatedSentence.length = 0;
+        }
         sentence = sentence.toString().trim().toLowerCase();
         let translatedLetter = '';
         sentence.toString().toLowerCase();
         for (let index = 0; index < sentence.length; index++) {
             if (/([a-z])/g) {
-                translatedLetter = sentence.charAt(index) + '.png';
+                if (sentence.charAt(index) === " ") { 
+                    translatedLetter = "blank.png"; 
+                } else {
+                    translatedLetter = sentence.charAt(index) + '.png';
+                }
             }
-
             translatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter });
         }
-        
+        console.log(translatedSentence);
+
     }
     return (
         <>
@@ -34,14 +41,14 @@ const Translation = (props) => {
                     id="translation"
                     type="text"
                     placeholder="Enter sentence..."
-                    className="form-control" 
+                    className="form-control"
                     onChange={(event) => setTranslation(event.target.value)}
                 />
 
                 <button
                     type="submit"
                     className="btn btn-success btn-lg"
-                    onClick={() => handleSubmit(dispatch, translation)}>
+                    >
                     Translate
                 </button>
             </form>
