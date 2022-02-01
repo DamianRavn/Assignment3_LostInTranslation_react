@@ -32,7 +32,7 @@ function LandingPage(props)
         if(!username)
         {
             console.log("username is nothin")
-            dispatch(createUser(username));
+            dispatch(createUser("test"));
         }
         content = <div>Sucess!</div>
     } 

@@ -17,9 +17,9 @@ async (username) =>
     return fetch(`${apiURL}/translation`, 
     {
         method: 'POST',
+        mode: 'no-cors',
         headers: 
         {
-            'Access-Control-Allow-Origin': "*",
             'X-API-Key': apiKey,
             'Content-Type': 'application/json',
         },
@@ -33,6 +33,7 @@ async (username) =>
     {
       if (!response.ok) 
       {
+          console.log(response);
         throw new Error('Could not create new user')
       }
       return response.json()
