@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 function HeaderUser() {
 
-    const username = useSelector(state => state.user.value.name);
+    const username = useSelector(state => state.user.value.username);
 
     return (
         <Navbar className="color-nav-user" fixed="top">
