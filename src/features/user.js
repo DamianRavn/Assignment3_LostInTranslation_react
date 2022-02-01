@@ -48,8 +48,6 @@ async (username) =>
 export const updateTranslation = createAsyncThunk('user/updateTranslation',
 async (user) => 
 {
-    console.log(user.id);
-    console.log(user.translations);
     return fetch(`${apiURL}/translations/${user.id}`, 
     {
         method: 'PATCH',
@@ -97,10 +95,7 @@ export const userSlice = createSlice
         },
         reducers:
         {
-            addUserTranslation: (state, action) => 
-            {
-                state.value.translations = action.payload;
-            },
+            
             logout: (state) => 
             { 
                 state.value = initialStateValue 
@@ -165,6 +160,6 @@ export const userSlice = createSlice
     });
 
 // Destructure and export the plain action creators
-export const { setUserName, addUserTranslation, logout } = userSlice.actions;
+export const { setUserName, logout } = userSlice.actions;
 
 export default userSlice.reducer;

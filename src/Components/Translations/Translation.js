@@ -44,7 +44,6 @@ const Translation = (props) => {
             setTrancelatedSentence([...translatedSentence]);
 
         }
-        console.log(translatedSentence);
 
     }
     return (
