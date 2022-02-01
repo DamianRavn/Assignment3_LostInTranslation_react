@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../features/user.js";
 
 function Profile() {
@@ -10,25 +11,49 @@ function Profile() {
     //Cant display an obejct as easily as we can an array
     const displayTranslations = filteredTranslations.map((translation)=> translation.translation + ' \n');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleClick = ()=>
+    const onClick = ()=>
     {
-        dispatch()
-
+        console.log("click")
     }
     return (
-        <div>
-            <h1>Profile</h1>
-            <h5>User: {username}</h5>
-            <h5>Translations:</h5>
-            <pre>{displayTranslations}</pre>
-
+        <div className="container text-center d-flex align-items-center justify-content-center">
             <div>
-                <button onClick=
-                    {
-                        handleClick
-                    }
-                >delete</button>
+                <h1>Profile</h1>
+                <h5>User: {username}</h5>
+                <p>Translations: {translations}</p>
+                <div>
+                    <div>
+                        <h1>Profile</h1>
+                    </div>
+                    <div>
+                        <h5>User: {username}</h5>
+                    </div>
+                    <div>
+                        <p>Translations: {username.translations}</p>
+                    </div>
+                    <div>
+                        <button onClick=
+                            {
+                                () => 
+                                {
+                                    onClick
+                                }
+                            }
+                        >delete</button>
+                    </div>
+                    <div>
+                        <button onClick=
+                            {
+                                () => {
+                                    dispatch(logout());
+                                    navigate("/");
+                                }
+                            }
+                        >Logout</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
