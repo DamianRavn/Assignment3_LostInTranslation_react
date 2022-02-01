@@ -2,6 +2,7 @@ import { React } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser, createUser, setUserName } from "../features/user.js";
 import InputAsyncCallComponent from "../Components/InputAsyncCallComponent.js";
+import { useNavigate, Navigate } from "react-router-dom";
 
 //Login on click
 const handleUserClick = (dispatch, username)=>
@@ -12,6 +13,7 @@ const handleUserClick = (dispatch, username)=>
 function LandingPage(props)
 {
     const dispatch = useDispatch();
+    //let navigate = useNavigate();
     //Content can hold whatever html is necessary. The beauty of React
     let content
     //Get state variables
@@ -37,7 +39,10 @@ function LandingPage(props)
     //Success! user has been found/created, time to go to translation page
     else if (userStatus === 'sucess') 
     {
-        content = <div>Sucess!</div>
+        //No errors from this, probably the proper way to do it
+        return <Navigate to='/translation'/>
+        //Was getting an error here, probably bad practice
+        //navigate("/translation");
     } 
     //Something went wrong. Error gets displayed
     else if (userStatus === 'failed') 

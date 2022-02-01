@@ -64,9 +64,6 @@ export const userSlice = createSlice
         },
         reducers:
         {
-            setUserName: (state, action) => {
-                state.value.username = action.payload;
-            },
             addUserTranslation: (state, action) => 
             {
                 state.value.translations = action.payload;
