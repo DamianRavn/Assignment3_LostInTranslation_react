@@ -31,7 +31,7 @@ const Translation = (props) => {
                     translatedLetter = sentence.charAt(index) + '.png';
                 }
             }
-            translatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter });
+            setTrancelatedSentence([...translatedSentence, { "id": index, "src": imageSource, "letter": translatedLetter }]);
         }
         console.log(translatedSentence);
 
