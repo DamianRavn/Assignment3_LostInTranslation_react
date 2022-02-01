@@ -4,7 +4,7 @@ import HeaderUser from "../Components/Headers/HeaderUser";
 
 function Header() {
     const username = useSelector(state => state.user.value.username);
-    if (username === "") {
+    if (!username) {
         return (
             <HeaderGuest />
         )
