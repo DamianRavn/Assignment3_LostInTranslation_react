@@ -1,13 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const apiURL =  'https://assignment3-react.herokuapp.com'
-const apiKey = "ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxztvyllhqfhceqcfyznwtuzuyyv";
+const apiURL =  'https://experis-assignment-api.herokuapp.com'
+const apiKey =  'floppy-vitamin-cloud';
 
 //fetches user from api. Using redux toolkit thunk middleware
 export const fetchUser = createAsyncThunk('user/fetchUser',
     async (username) => 
     {
-        return fetch(`${apiURL}/translations?username=${username}`).then((res) => res.json);
+        console.log(username)
+        return fetch(`${apiURL}/translations?username=${username}`)
+        .then(response => response.json())
+        .catch(error => {
+        })
     });
 
 //creates user from api. Using redux toolkit thunk middleware
@@ -17,7 +21,6 @@ async (username) =>
     return fetch(`${apiURL}/translations`, 
     {
         method: 'POST',
-        mode: 'no-cors',
         headers: 
         { 
             'X-API-Key': apiKey,
@@ -26,7 +29,7 @@ async (username) =>
         body: JSON.stringify
         ({ 
             username: username, 
-            translations: [] 
+            translations: ["Hello"] 
         })
     })
     .then(response => 
@@ -48,7 +51,7 @@ async (username) =>
 const initialStateValue =
 {
     id: 0,
-    name: "",
+    username: "",
     translations: [],
     status: ""
 };
@@ -77,30 +80,30 @@ export const userSlice = createSlice
             [fetchUser.pending]: (state, action) => 
             {
                 state.value.status = "loading";
-                console.log(state.value.status);
             },
-            [fetchUser.fulfilled]: (state, {payload}) => 
+            [fetchUser.fulfilled]: (state, payloadObj) => 
             {
-                console.log(payload)
-                if(payload.length === 0)
+                if(payloadObj.payload.length === 0)
                 {
-                    state.value.name = "";
+                    state.value.name = payloadObj.meta.arg;
+                    state.value.status = "newUser"
+                    return;
                 }
+                
+                state.value = payloadObj.payload[0];
+                console.log(state.value);
                 state.value.status = "sucess";
-                console.log(state.value.status);
             },
             [fetchUser.rejected]: (state, action) => 
             {
                 state.value.status = "failed";
                 state.value.error = action.error.message;
-                console.log(state.value.status);
             },
 
             //Create user
             [createUser.pending]: (state, action) => 
             {
                 state.value.status = "loading";
-                console.log("Create user " +state.value.status);
             },
             [createUser.fulfilled]: (state, payloadObject) => 
             {

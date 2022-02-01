@@ -5,9 +5,7 @@ import InputAsyncCallComponent from "../Components/InputAsyncCallComponent.js";
 
 const handleUserClick = (dispatch, username)=>
 {
-    dispatch(setUserName(username));
     dispatch(fetchUser(username));
-    //dispatch(createUser(username));
 }
 
 function LandingPage(props)
@@ -16,7 +14,7 @@ function LandingPage(props)
     let content
 
     const userStatus = useSelector(state => state.user.value.status);
-    const username = useSelector(state => state.user.value.name);
+    const username = useSelector(state => state.user.value.username);
     const error = useSelector(state => state.user.value.error);
 
     if (!username) 
@@ -27,13 +25,12 @@ function LandingPage(props)
     {
         content = <div>Loading...</div>
     } 
+    else if(userStatus === 'newUser')
+    {
+        dispatch(createUser(username));
+    }
     else if (userStatus === 'sucess') 
     {
-        if(!username)
-        {
-            console.log("username is nothin")
-            dispatch(createUser("test"));
-        }
         content = <div>Sucess!</div>
     } 
     else if (userStatus === 'failed') 
