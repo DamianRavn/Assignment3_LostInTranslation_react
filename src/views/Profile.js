@@ -1,12 +1,10 @@
-import { React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/user.js";
 
-function Profile(props)
-{
+function Profile() {
     const user = useSelector((state) => state.user.value);
     const dispatch = useDispatch();
-    return(
+    return (
         <div>
             <h1>Profile</h1>
             <h5>User: {user.name}</h5>
@@ -14,12 +12,11 @@ function Profile(props)
 
             <div>
                 <button onClick=
-                {
-                    ()=>
                     {
-                        dispatch(logout());
+                        () => {
+                            dispatch(logout());
+                        }
                     }
-                }
                 >Logout</button>
             </div>
         </div>
