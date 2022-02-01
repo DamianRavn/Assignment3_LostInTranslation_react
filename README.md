@@ -25,7 +25,7 @@ In this project we Build an online sign language translator as a Single Page App
 ### Online Deployment
 
 
-* To see a deployet version of this SPA, please head to https://assignment3-react.herokuapp.com/
+* To see a deployed version of this SPA, please head to https://assignment3-react.herokuapp.com/
 
 ## Help
 
