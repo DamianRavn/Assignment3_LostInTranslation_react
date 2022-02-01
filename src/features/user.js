@@ -32,6 +32,10 @@ export const userSlice = createSlice
             { 
                 state.value.name = action.payload; 
             },
+            addUserTranslation: (state, action) => 
+            {
+                state.value.translations = action.payload;
+            },
             logout: (state) => 
             { 
                 state.value = initialStateValue 
@@ -64,6 +68,6 @@ export const userSlice = createSlice
     });
 
 // Destructure and export the plain action creators
-export const { setUserName, logout } = userSlice.actions;
+export const { setUserName, addUserTranslation, logout } = userSlice.actions;
 
 export default userSlice.reducer;
