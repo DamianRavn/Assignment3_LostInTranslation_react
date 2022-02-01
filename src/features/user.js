@@ -197,6 +197,7 @@ export const userSlice = createSlice
             //overwrite translation
             [overwriteTranslations.fulfilled]: (state, {payload}) => 
             {
+                console.log(payload)
                 state.value = {...payload};
                 state.value.status = "sucess";
             },
