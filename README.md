@@ -16,11 +16,11 @@ In this project we Build an online sign language translator as a Single Page App
 ### Installing
 
 * Clone the folder into your system.
-* use 'npm install'
+* use 'npm install' [Suggested edit] -> "Go to the root folder of the cloned project and run npm install from your favorite terminal."
 
 ### Executing program
 
-* 'npm start' to run on localhost
+* 'npm start' to run on localhost [Suggested edit] -> "After running install, simply run npm start while still in the root folder, to run the SPA."
 
 ## Help
 
@@ -38,4 +38,4 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-I would like to thank the teachers at Noroff for giving us this challenge.
+We would like to thank the teachers at Noroff for giving us this challenge.
