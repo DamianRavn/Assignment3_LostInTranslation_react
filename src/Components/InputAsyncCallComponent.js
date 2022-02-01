@@ -12,16 +12,23 @@ export default function InputAsyncCallComponent(props) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className='mb-2'>
+      <label htmlFor="username">
+        What is your username?
+      </label>
+      </div>
       <input
         type="text"
         required={true}
-        placeholder="Input Username here"
+        placeholder="Type your username..."
         onChange={(e) => setName(e.target.value)}
       />
+      <div className="mt-3">
       <button onClick=
         {() =>
           props.clickHandler(dispatch, name)
-        }>Submit</button>
+        }>Let's go</button>
+      </div>
     </form>
   );
 }
