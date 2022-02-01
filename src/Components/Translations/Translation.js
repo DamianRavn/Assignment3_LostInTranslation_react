@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 const Translation = (props) => {
     const [translation, setTranslation] = useState("");
     const [translatedSentence, setTrancelatedSentence] = useState([]);
-    const dispatch = useDispatch();
+    const tempTranslatedSentence = [];
     const imageSource = "assets/images/signs/";
 
     const handleSubmit = (event) => {
@@ -28,9 +28,10 @@ const Translation = (props) => {
                     translatedLetter = sentence.charAt(index) + '.png';
                 }
             }
-            translatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter });
+            tempTranslatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter }); 
         }
-        console.log(translatedSentence);
+        setTrancelatedSentence(translatedSentence=> [...translatedSentence, tempTranslatedSentence]);
+        console.log(translatedSentence); 
 
     }
     return (
@@ -59,7 +60,6 @@ const Translation = (props) => {
             </div>
         </>
     )
-
 }
 
 export default Translation;
