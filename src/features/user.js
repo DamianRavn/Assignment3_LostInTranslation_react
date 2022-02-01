@@ -67,7 +67,7 @@ export const userSlice = createSlice
         reducers:
         {
             setUserName: (state, action) => {
-                state.value.name = action.payload;
+                state.value.username = action.payload;
             },
             logout: (state) => {
                 state.value = initialStateValue
@@ -85,7 +85,7 @@ export const userSlice = createSlice
             {
                 if(payloadObj.payload.length === 0)
                 {
-                    state.value.name = payloadObj.meta.arg;
+                    state.value.username = payloadObj.meta.arg;
                     state.value.status = "newUser"
                     return;
                 }
@@ -108,7 +108,7 @@ export const userSlice = createSlice
             [createUser.fulfilled]: (state, payloadObject) => 
             {
                 console.log(payloadObject)
-                state.value.name = "test"
+                state.value.username = "test"
                 state.value.status = "sucess";
                 console.log("Create user " +state.value.status);
             },
