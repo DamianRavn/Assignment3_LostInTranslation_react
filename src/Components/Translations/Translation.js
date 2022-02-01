@@ -13,7 +13,7 @@ const Translation = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        handleTranslation(translation)
+        handleTranslation(translation);
     }
 
     const handleTranslation = (sentence) => {
@@ -31,7 +31,9 @@ const Translation = (props) => {
                     translatedLetter = sentence.charAt(index) + '.png';
                 }
             }
-            setTrancelatedSentence([...translatedSentence, { "id": index, "src": imageSource, "letter": translatedLetter }]);
+            translatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter });
+            setTrancelatedSentence([...translatedSentence]);
+
         }
         console.log(translatedSentence);
 
