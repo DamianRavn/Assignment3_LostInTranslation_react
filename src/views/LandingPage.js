@@ -1,22 +1,24 @@
 import { React } from "react";
-import { useSelector } from "react-redux";
-import { fetchUser, setUserName } from "../features/user.js";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser, createUser, setUserName } from "../features/user.js";
 import InputAsyncCallComponent from "../Components/InputAsyncCallComponent.js";
 
 const handleUserClick = (dispatch, username)=>
 {
     dispatch(setUserName(username));
     dispatch(fetchUser(username));
+    //dispatch(createUser(username));
 }
 
 function LandingPage(props)
 {
+    const dispatch = useDispatch();
     let content
 
-    const userStatus = useSelector(state => state.user.status);
-    const username = useSelector(state => state.user.name);
-    const error = useSelector(state => state.user.error);
-    console.log("user: " + userStatus + " username: " + username)
+    const userStatus = useSelector(state => state.user.value.status);
+    const username = useSelector(state => state.user.value.name);
+    const error = useSelector(state => state.user.value.error);
+
     if (!username) 
     {
         content = <InputAsyncCallComponent clickHandler = {handleUserClick} placeholder = "Input Username here" />    
@@ -27,6 +29,11 @@ function LandingPage(props)
     } 
     else if (userStatus === 'sucess') 
     {
+        if(!username)
+        {
+            console.log("username is nothin")
+            dispatch(createUser(username));
+        }
         content = <div>Sucess!</div>
     } 
     else if (userStatus === 'failed') 

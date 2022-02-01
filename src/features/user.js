@@ -7,20 +7,21 @@ const apiKey = "ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxztvyllhqfhceqcfyznwtuzuyyv
 export const fetchUser = createAsyncThunk('user/fetchUser',
     async (username) => 
     {
-        return fetch(`${apiURL}/translations?username=${username}`).then((res) => res.json);
+        return fetch(`${apiURL}/translation?username=${username}`).then((res) => res.json);
     });
 
 //creates user from api. Using redux toolkit thunk middleware
 export const createUser = createAsyncThunk('user/createUser',
 async (username) => 
 {
-    return fetch(`${apiURL}/translations`, 
+    return fetch(`${apiURL}/translation`, 
     {
         method: 'POST',
         headers: 
         {
-          'X-API-Key': apiKey,
-          'Content-Type': 'application/json'
+            'Access-Control-Allow-Origin': "*",
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify
         ({ 
@@ -74,42 +75,43 @@ export const userSlice = createSlice
             //Fetch user
             [fetchUser.pending]: (state, action) => 
             {
-                state.status = "loading";
-                console.log(state.status);
+                state.value.status = "loading";
+                console.log(state.value.status);
             },
-            [fetchUser.fulfilled]: (state, payloadObject) => 
+            [fetchUser.fulfilled]: (state, {payload}) => 
             {
-                if (payloadObject.payload.length === 0) 
+                console.log(payload)
+                if(payload.length === 0)
                 {
-                    console.log(payloadObject);
-                    state.value = payloadObject;
+                    state.value.name = "";
                 }
-                state.status = "sucess";
-                console.log(state.status);
+                state.value.status = "sucess";
+                console.log(state.value.status);
             },
             [fetchUser.rejected]: (state, action) => 
             {
-                state.status = "failed";
-                state.error = action.error.message;
-                console.log(state.status);
+                state.value.status = "failed";
+                state.value.error = action.error.message;
+                console.log(state.value.status);
             },
 
             //Create user
             [createUser.pending]: (state, action) => 
             {
-                state.status = "loading";
-                console.log(state.status);
+                state.value.status = "loading";
+                console.log("Create user " +state.value.status);
             },
             [createUser.fulfilled]: (state, payloadObject) => 
             {
                 console.log(payloadObject)
-                state.status = "sucess";
-                console.log(state.status);
+                state.value.name = "test"
+                state.value.status = "sucess";
+                console.log("Create user " +state.value.status);
             },
             [createUser.rejected]: (state, action) => 
             {
-                state.status = "failed";
-                console.log(state.status);
+                state.value.status = "failed";
+                console.log("Create user " +state.value.status);
             }
         }
     });
