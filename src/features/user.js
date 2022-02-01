@@ -3,12 +3,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const apiURL = 'https://assignment3-react.herokuapp.com'
 const apiKey = "ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxztvyllhqfhceqcfyznwtuzuyyv";
 
-export const fetchUser = createAsyncThunk('user/fetchUser', 
-async (username)=>
-{
-    console.log(username)
-    return fetch(`${apiURL}/translations?username=${username}`).then((res)=> res.json);
-});
+export const fetchUser = createAsyncThunk('user/fetchUser',
+    async (username) => {
+        console.log(username);
+        return fetch(`${apiURL}/translations?username=${username}`).then((res) => res.json);
+    });
 
 
 const initialStateValue =
@@ -28,37 +27,31 @@ export const userSlice = createSlice
         },
         reducers:
         {
-            setUserName: (state, action) => 
-            { 
-                state.value.name = action.payload; 
+            setUserName: (state, action) => {
+                state.value.name = action.payload;
             },
-            logout: (state) => 
-            { 
-                state.value = initialStateValue 
+            logout: (state) => {
+                state.value = initialStateValue
             },
         },
         // Handles the async states
         extraReducers:
         {
-            [fetchUser.pending]: (state, action) =>
-            {
+            [fetchUser.pending]: (state, action) => {
                 state.status = "loading";
-                console.log(state.status)
+                console.log(state.status);
             },
-            [fetchUser.fulfilled]: (state, {payload}) =>
-            {
-                if (payload.length == 1) 
-                {
-                    console.log(payload)
+            [fetchUser.fulfilled]: (state, { payload }) => {
+                if (payload.length === 1) {
+                    console.log(payload);
                     state.value = payload;
                 }
                 state.status = "sucess";
-                console.log(state.status)
+                console.log(state.status);
             },
-            [fetchUser.rejected]: (state, action) =>
-            {
+            [fetchUser.rejected]: (state, action) => {
                 state.status = "failed";
-                console.log(state.status)
+                console.log(state.status);
             }
         }
     });
