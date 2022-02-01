@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUser, createUser, setUserName } from "../features/user.js";
 import InputAsyncCallComponent from "../Components/InputAsyncCallComponent.js";
 
+//Login on click
 const handleUserClick = (dispatch, username)=>
 {
     dispatch(fetchUser(username));
@@ -11,28 +12,34 @@ const handleUserClick = (dispatch, username)=>
 function LandingPage(props)
 {
     const dispatch = useDispatch();
+    //Content can hold whatever html is necessary. The beauty of React
     let content
-
+    //Get state variables
     const userStatus = useSelector(state => state.user.value.status);
     const username = useSelector(state => state.user.value.username);
     const error = useSelector(state => state.user.value.error);
 
+    //If username isn't set to anything, allow login
     if (!username) 
     {
         content = <InputAsyncCallComponent clickHandler = {handleUserClick} placeholder = "Input Username here" />    
     }
+    //Show loading div
     if (userStatus === 'loading') 
     {
         content = <div>Loading...</div>
     } 
+    //The GET came back empty, make a new user
     else if(userStatus === 'newUser')
     {
         dispatch(createUser(username));
     }
+    //Success! user has been found/created, time to go to translation page
     else if (userStatus === 'sucess') 
     {
         content = <div>Sucess!</div>
     } 
+    //Something went wrong. Error gets displayed
     else if (userStatus === 'failed') 
     {
       content = <div>{error}</div>
@@ -46,7 +53,9 @@ function LandingPage(props)
             </div> 
         
             <div className="containter text-center d-flex align-item-center justify-content-center mt-3">
-            {content}
+            {
+                content
+            }
             </div>
         </div>
         </>
