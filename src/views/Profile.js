@@ -12,7 +12,7 @@ function Profile() {
     const displayTranslations = filteredTranslations.map((translation)=> translation.translation + ' \n');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+  
     const onClick = ()=>
     {
         console.log("click")
