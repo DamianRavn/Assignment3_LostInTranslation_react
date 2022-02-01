@@ -1,8 +1,8 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser, createUser } from "../features/user.js";
 import InputAsyncCallComponent from "../Components/InputAsyncCallComponent.js";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 //Login on click
 const handleUserClick = (dispatch, username) => {
@@ -17,6 +17,13 @@ function LandingPage(props) {
     const userStatus = useSelector(state => state.user.value.status);
     const username = useSelector(state => state.user.value.username);
     const error = useSelector(state => state.user.value.error);
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (localStorage.getItem("local-session" === "true")) {
+            navigate("/translation");
+        } 
+    }, [navigate])
 
     //If username isn't set to anything, allow login
     if (!username) {
@@ -41,7 +48,6 @@ function LandingPage(props) {
     else if (userStatus === 'failed') {
         content = <div>{error}</div>
     }
-
     return (
         <>
             <div className="container text-center d-flex align-items-center justify-content-center">
