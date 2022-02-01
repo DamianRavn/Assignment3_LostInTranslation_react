@@ -9,8 +9,8 @@ import Header from "./views/Header";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Header />
+      <div className="container">
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/translation" element={<TranslationPage />} />

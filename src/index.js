@@ -9,6 +9,7 @@ import store from "./store.js";
 import App from './App.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "animate.css";
 
 
 

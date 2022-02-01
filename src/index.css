@@ -1,7 +1,9 @@
-body {
+body, html {
+  padding-top: 70px;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
@@ -9,7 +11,21 @@ code {
     monospace;
 }
 
+
 .handsigns {
   height: 80px;
   width: 80px;
+}
+
+.container {
+  height: 100%;
+}
+
+
+.color-nav-guest {
+  background-color: #E7B355;
+}
+
+.color-nav-user {
+  background-color: #af7915;
 }
