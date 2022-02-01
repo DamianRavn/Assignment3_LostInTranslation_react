@@ -11,6 +11,12 @@ code {
     monospace;
 }
 
+
+.handsigns {
+  height: 80px;
+  width: 80px;
+}
+
 .container {
   height: 100%;
 }
