@@ -1,6 +1,6 @@
 import { Nav, Container, Navbar } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 function HeaderUser() {
 
@@ -9,12 +9,12 @@ function HeaderUser() {
     return (
         <Navbar className="color-nav-user" fixed="top">
             <Container>
-                <Link to="/">Translatron - Your connection with Deaf People</Link>
+                <NavLink to="/">Translatron - Your connection with Deaf People</NavLink>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to="/">Home</Link>
-                        <Link to="profile">{username}'s Profile</Link>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="profile">{username}'s Profile</NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

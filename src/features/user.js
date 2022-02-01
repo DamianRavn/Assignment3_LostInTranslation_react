@@ -44,6 +44,39 @@ async (username) =>
         console.log(error);
     })
 });
+//adds to the users translation history
+export const updateTranslation = createAsyncThunk('user/updateTranslation',
+async (user) => 
+{
+    console.log(user.id);
+    console.log(user.translations);
+    return fetch(`${apiURL}/translations/${user.id}`, 
+    {
+        method: 'PATCH',
+        headers: 
+        {
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify
+        ({
+            // Provide new translations to add to user with id 1
+            translations: [...user.translations, {translation: user.newTranslation, deleted: false}]
+        })
+    })
+    .then(response => 
+    {
+        if (!response.ok) 
+        {
+            throw new Error('Could not update translations history')
+        }
+        return response.json()
+    })
+    .catch(error => 
+    {
+        console.log(error);
+    })
+});
 
 //base state
 const initialStateValue =
@@ -104,11 +137,27 @@ export const userSlice = createSlice
             {
                 state.value.status = "loading";
             },
-            [createUser.fulfilled]: (state, payloadObject) => 
+            [createUser.fulfilled]: (state, {payload}) => 
             {
+                state.value = {...payload};
                 state.value.status = "sucess";
             },
             [createUser.rejected]: (state, action) => 
+            {
+                state.value.status = "failed";
+            },
+
+            //Update translation
+            [updateTranslation.pending]: (state, action) => 
+            {
+                state.value.status = "loading";
+            },
+            [updateTranslation.fulfilled]: (state, {payload}) => 
+            {
+                state.value = {...payload};
+                state.value.status = "sucess";
+            },
+            [updateTranslation.rejected]: (state, action) => 
             {
                 state.value.status = "failed";
             }

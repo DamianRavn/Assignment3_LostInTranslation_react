@@ -1,15 +1,20 @@
-import React from 'react';
-import { useState } from 'react'
+import { React, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from "react-router-dom";
+import { updateTranslation } from "../../features/user.js";
 
 const Translation = (props) => {
-    const username = useSelector(state => state.user.value.username);
-    console.log(username)
+    const user = useSelector(state => state.user.value);
 
     const [translation, setTranslation] = useState("");
     const [translatedSentence, setTrancelatedSentence] = useState([]);
     const dispatch = useDispatch();
     const imageSource = "assets/images/signs/";
+
+    if (!user.username) 
+    {
+        return <Navigate to='/' />
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,6 +26,10 @@ const Translation = (props) => {
             translatedSentence.length = 0;
         }
         sentence = sentence.toString().trim().toLowerCase();
+        //Send to api to store translation
+        let userObj = {...user, newTranslation: sentence};
+        dispatch(updateTranslation(userObj));
+
         let translatedLetter = '';
         sentence.toString().toLowerCase();
         for (let index = 0; index < sentence.length; index++) {
