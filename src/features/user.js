@@ -7,7 +7,6 @@ const apiKey =  'floppy-vitamin-cloud';
 export const fetchUser = createAsyncThunk('user/fetchUser',
     async (username) => 
     {
-        console.log(username)
         return fetch(`${apiURL}/translations?username=${username}`)
         .then(response => response.json())
         .catch(error => {
@@ -29,14 +28,13 @@ async (username) =>
         body: JSON.stringify
         ({ 
             username: username, 
-            translations: ["Hello"] 
+            translations: []
         })
     })
     .then(response => 
     {
       if (!response.ok) 
       {
-          console.log(response);
         throw new Error('Could not create new user')
       }
       return response.json()
@@ -96,7 +94,6 @@ export const userSlice = createSlice
                 }
                 
                 state.value = payloadObj.payload[0];
-                console.log(state.value);
                 state.value.status = "sucess";
             },
             [fetchUser.rejected]: (state, action) => 
@@ -112,15 +109,11 @@ export const userSlice = createSlice
             },
             [createUser.fulfilled]: (state, payloadObject) => 
             {
-                console.log(payloadObject)
-                state.value.username = "test"
                 state.value.status = "sucess";
-                console.log("Create user " +state.value.status);
             },
             [createUser.rejected]: (state, action) => 
             {
                 state.value.status = "failed";
-                console.log("Create user " +state.value.status);
             }
         }
     });

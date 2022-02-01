@@ -10,7 +10,6 @@ const Translation = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(translation);
         handleTranslation(translation)
     }
 
@@ -26,7 +25,6 @@ const Translation = (props) => {
             //translatedSentence.push(translatedLetter)
         }
         
-        console.log(translatedSentence);
         //for(const [value] of translatedSentence.entries()) {
         //    images.push(<img src={imageSource + value} alt=" "/>)
         //}
