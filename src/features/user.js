@@ -77,9 +77,9 @@ async (user) =>
 });
 //delete users translation history
 export const overwriteTranslations = createAsyncThunk('user/overwriteTranslations',
-async (translations) => 
+async (data) => 
 {
-    return fetch(`${apiURL}/translations/${user.id}`, 
+    return fetch(`${apiURL}/translations/${data.id}`, 
     {
         method: 'PATCH',
         headers: 
@@ -89,7 +89,7 @@ async (translations) =>
         },
         body: JSON.stringify
         ({
-            translations: translations
+            translations: data.translations
         })
     })
     .then(response => 
@@ -192,7 +192,7 @@ export const userSlice = createSlice
             {
                 state.value.status = "failed";
                 state.value.error = action.error.message;
-            }
+            },
 
             //overwrite translation
             [overwriteTranslations.fulfilled]: (state, {payload}) => 
@@ -204,7 +204,7 @@ export const userSlice = createSlice
             {
                 state.value.status = "failed";
                 state.value.error = action.error.message;
-            }
+            },
         }
     });
 

@@ -25,21 +25,9 @@ function Profile() {
                 <p>Translations: {translations}</p>
                 <div>
                     <div>
-                        <h1>Profile</h1>
-                    </div>
-                    <div>
-                        <h5>User: {username}</h5>
-                    </div>
-                    <div>
-                        <p>Translations: {username.translations}</p>
-                    </div>
-                    <div>
                         <button onClick=
                             {
-                                () => 
-                                {
-                                    onClick
-                                }
+                                onClick
                             }
                         >delete</button>
                     </div>
