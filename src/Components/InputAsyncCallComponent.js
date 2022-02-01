@@ -8,14 +8,15 @@ export default function InputAsyncCallComponent(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className='mb-2'>
-      <label htmlFor="username">
-        What is your username?
-      </label>
+        <label htmlFor="username">
+          What is your username?
+        </label>
       </div>
       <input
         type="text"
@@ -24,10 +25,10 @@ export default function InputAsyncCallComponent(props) {
         onChange={(e) => setName(e.target.value)}
       />
       <div className="mt-3">
-      <button onClick=
-        {() =>
-          props.clickHandler(dispatch, name)
-        }>Let's go</button>
+        <button onClick=
+          {() =>
+            props.clickHandler(dispatch, name)
+          }>Let's go</button>
       </div>
     </form>
   );
