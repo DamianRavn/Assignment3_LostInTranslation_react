@@ -2,11 +2,15 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-export default function InputAsyncCallComponent(props) {
+export default function InputAsyncCallComponent(props)
+{
+  //Making a local state so that the input is tracked
   const [name, setName] = useState("");
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
+  const handleSubmit = event => 
+  {
+    //Prevents the refresh of the site
     event.preventDefault();
     
   };
