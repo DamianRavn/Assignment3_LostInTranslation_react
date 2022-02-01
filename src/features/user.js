@@ -82,7 +82,8 @@ const initialStateValue =
     id: 0,
     username: "",
     translations: [],
-    status: ""
+    status: "",
+    session: false
 };
 //Create slice is part of redux toolkit. It has the user state and reducers
 export const userSlice = createSlice
@@ -98,7 +99,8 @@ export const userSlice = createSlice
             
             logout: (state) => 
             { 
-                state.value = initialStateValue 
+                state.value = initialStateValue
+                localStorage.removeItem('local-session', JSON.stringify(state.value.session))
             },
         },
         // Handles the async states
@@ -120,6 +122,8 @@ export const userSlice = createSlice
                 
                 state.value = payloadObj.payload[0];
                 state.value.status = "sucess";
+                state.value.session = true;
+                localStorage.setItem('local-session', JSON.stringify(state.value.session))
             },
             [fetchUser.rejected]: (state, action) => 
             {
@@ -136,6 +140,8 @@ export const userSlice = createSlice
             {
                 state.value = {...payload};
                 state.value.status = "sucess";
+                state.value.session = true;
+                localStorage.setItem('local-session', JSON.stringify(state.value.session))
             },
             [createUser.rejected]: (state, action) => 
             {
