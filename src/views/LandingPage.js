@@ -13,7 +13,7 @@ function LandingPage(props)
     return(
         <div>
             <div>Home</div>
-            <InputAsyncCallComponent clickHandler = {handleUserClick} />
+            <InputAsyncCallComponent clickHandler = {handleUserClick} placeholder = "Input Username here" />
         </div>
     );
 }
