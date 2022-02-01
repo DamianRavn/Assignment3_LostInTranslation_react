@@ -1,11 +1,11 @@
 import { React } from "react";
-import TranslationInput from "../Components/Translation/TranslationInput";
+import TranslationOutput from "../Components/Translation/TranslationOutput";
 
 function Translation(props)
 {
     return(
         <div>
-            <TranslationInput />
+            <TranslationOutput />
         </div>
     );
 }

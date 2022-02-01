@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 export default function TranslationInput() {
+
+    const [input, setInput] = useState("");
+    const handleOnClick = () => {
+
+    }
+
     return (
         <>
             <div className="container text-center d-flex align-items-center justify-content-center">
@@ -12,7 +20,7 @@ export default function TranslationInput() {
                     <div>
                         <input type="text" placeholder="Type here..."></input>
                     </div>
-                    <button className="mt-3">Translate!</button>
+                    <button className="mt-3" onClick={handleOnClick}>Translate!</button>
                 </div>
             </div>
         </>
