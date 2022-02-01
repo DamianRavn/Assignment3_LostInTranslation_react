@@ -3,13 +3,47 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const apiURL = 'https://assignment3-react.herokuapp.com'
 const apiKey = "ffsgqnwrubathttxuatsbsgmkvqvflgeogojnxztvyllhqfhceqcfyznwtuzuyyv";
 
+//fetches user from api. Using redux toolkit thunk middleware
 export const fetchUser = createAsyncThunk('user/fetchUser',
-    async (username) => {
-        console.log(username);
-        return fetch(`${apiURL}/translations?username=${username}`).then((res) => res.json);
+    async (username) => 
+    {
+        return fetch(`${apiURL}/translation?username=${username}`).then((res) => res.json);
     });
 
+//creates user from api. Using redux toolkit thunk middleware
+export const createUser = createAsyncThunk('user/createUser',
+async (username) => 
+{
+    return fetch(`${apiURL}/translation`, 
+    {
+        method: 'POST',
+        headers: 
+        {
+            'Access-Control-Allow-Origin': "*",
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify
+        ({ 
+            username: username, 
+            translations: [] 
+        })
+    })
+    .then(response => 
+    {
+      if (!response.ok) 
+      {
+        throw new Error('Could not create new user')
+      }
+      return response.json()
+    })
+    .catch(error => 
+    {
+        console.log(error);
+    })
+});
 
+//base state
 const initialStateValue =
 {
     id: 0,
@@ -17,6 +51,7 @@ const initialStateValue =
     translations: [],
     status: ""
 };
+//Create slice is part of redux toolkit. It has the user state and reducers
 export const userSlice = createSlice
     ({
         name: "user",
@@ -37,21 +72,46 @@ export const userSlice = createSlice
         // Handles the async states
         extraReducers:
         {
-            [fetchUser.pending]: (state, action) => {
-                state.status = "loading";
-                console.log(state.status);
+            //Fetch user
+            [fetchUser.pending]: (state, action) => 
+            {
+                state.value.status = "loading";
+                console.log(state.value.status);
             },
-            [fetchUser.fulfilled]: (state, { payload }) => {
-                if (payload.length === 1) {
-                    console.log(payload);
-                    state.value = payload;
+            [fetchUser.fulfilled]: (state, {payload}) => 
+            {
+                console.log(payload)
+                if(payload.length === 0)
+                {
+                    state.value.name = "";
                 }
-                state.status = "sucess";
-                console.log(state.status);
+                state.value.status = "sucess";
+                console.log(state.value.status);
             },
-            [fetchUser.rejected]: (state, action) => {
-                state.status = "failed";
-                console.log(state.status);
+            [fetchUser.rejected]: (state, action) => 
+            {
+                state.value.status = "failed";
+                state.value.error = action.error.message;
+                console.log(state.value.status);
+            },
+
+            //Create user
+            [createUser.pending]: (state, action) => 
+            {
+                state.value.status = "loading";
+                console.log("Create user " +state.value.status);
+            },
+            [createUser.fulfilled]: (state, payloadObject) => 
+            {
+                console.log(payloadObject)
+                state.value.name = "test"
+                state.value.status = "sucess";
+                console.log("Create user " +state.value.status);
+            },
+            [createUser.rejected]: (state, action) => 
+            {
+                state.value.status = "failed";
+                console.log("Create user " +state.value.status);
             }
         }
     });
