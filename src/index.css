@@ -1,4 +1,5 @@
 body, html {
+  padding-top: 70px;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,6 +14,7 @@ code {
 .container {
   height: 100%;
 }
+
 
 .color-nav-guest {
   background-color: #E7B355;

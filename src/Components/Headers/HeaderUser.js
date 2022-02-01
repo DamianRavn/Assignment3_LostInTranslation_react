@@ -6,7 +6,7 @@ function HeaderUser() {
     const username = useSelector(state => state.user.value.name);
 
     return (
-        <Navbar className="color-nav-user" expand="lg">
+        <Navbar className="color-nav-user" fixed="top">
             <Container>
                 <Navbar.Brand href="#home">Translatron - Your connection with Deaf People</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -12,21 +12,28 @@ export default function InputAsyncCallComponent(props)
   {
     //Prevents the refresh of the site
     event.preventDefault();
+    
   };
 
-  return (    
-  <form onSubmit={handleSubmit}>
-      <input 
-      type="text" 
-      required={true}
-      placeholder= {props.placeholder}
-      onChange={(e) => setName(e.target.value)}
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className='mb-2'>
+        <label htmlFor="username">
+          What is your username?
+        </label>
+      </div>
+      <input
+        type="text"
+        required={true}
+        placeholder="Type your username..."
+        onChange={(e) => setName(e.target.value)}
       />
-      <button onClick=
-      {()=>
-        //When the button is clicked, run the function passed down from parent. This is an lambda function so it doesn't run on load.
-        props.clickHandler(dispatch, name)
-      }>Submit</button>
-  </form>
+      <div className="mt-3">
+        <button onClick=
+          {() =>
+            props.clickHandler(dispatch, name)
+          }>Let's go</button>
+      </div>
+    </form>
   );
 }
