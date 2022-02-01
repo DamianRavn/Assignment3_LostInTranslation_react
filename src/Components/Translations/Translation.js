@@ -31,7 +31,6 @@ const Translation = (props) => {
         dispatch(updateTranslation(userObj));
 
         let translatedLetter = '';
-        sentence.toString().toLowerCase();
         for (let index = 0; index < sentence.length; index++) {
             if (/([a-z])/g) {
                 if (sentence.charAt(index) === " ") { 

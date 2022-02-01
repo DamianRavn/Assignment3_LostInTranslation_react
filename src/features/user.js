@@ -59,7 +59,37 @@ async (user) =>
         body: JSON.stringify
         ({
             // Provide new translations to add to user with id 1
-            translations: [...user.translations, {translation: user.newTranslation, deleted: false}]
+            translations: [...user.translations, {translation: user.newTranslation, deleted: false, id: user.translations.length}]
+        })
+    })
+    .then(response => 
+    {
+        if (!response.ok) 
+        {
+            throw new Error('Could not update translations history')
+        }
+        return response.json()
+    })
+    .catch(error => 
+    {
+        console.log(error);
+    })
+});
+//delete users translation history
+export const overwriteTranslations = createAsyncThunk('user/overwriteTranslations',
+async (translations) => 
+{
+    return fetch(`${apiURL}/translations/${user.id}`, 
+    {
+        method: 'PATCH',
+        headers: 
+        {
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify
+        ({
+            translations: translations
         })
     })
     .then(response => 
@@ -96,11 +126,14 @@ export const userSlice = createSlice
         },
         reducers:
         {
-            
             logout: (state) => 
             { 
                 state.value = initialStateValue
                 localStorage.removeItem('local-session', JSON.stringify(state.value.session))
+            },
+            deleteTranslations: (state, action) =>
+            {
+                
             },
         },
         // Handles the async states
@@ -146,13 +179,10 @@ export const userSlice = createSlice
             [createUser.rejected]: (state, action) => 
             {
                 state.value.status = "failed";
+                state.value.error = action.error.message;
             },
 
             //Update translation
-            [updateTranslation.pending]: (state, action) => 
-            {
-                state.value.status = "loading";
-            },
             [updateTranslation.fulfilled]: (state, {payload}) => 
             {
                 state.value = {...payload};
@@ -161,6 +191,19 @@ export const userSlice = createSlice
             [updateTranslation.rejected]: (state, action) => 
             {
                 state.value.status = "failed";
+                state.value.error = action.error.message;
+            }
+
+            //overwrite translation
+            [overwriteTranslations.fulfilled]: (state, {payload}) => 
+            {
+                state.value = {...payload};
+                state.value.status = "sucess";
+            },
+            [overwriteTranslations.rejected]: (state, action) => 
+            {
+                state.value.status = "failed";
+                state.value.error = action.error.message;
             }
         }
     });
