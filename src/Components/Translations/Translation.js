@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 const Translation = (props) => {
     const [translation, setTranslation] = useState("");
     const dispatch = useDispatch();
-    const imageSource = "../../images/signs/";
+    const imageSource = "src/assets/images/signs/";
     let translatedSentence = [];
 
     const handleSubmit = (event) => {
@@ -22,17 +22,14 @@ const Translation = (props) => {
             if(/([a-z])/g) {
                 translatedLetter = sentence.charAt(index) + '.png';
             }
-            translatedSentence.push(<img src={imageSource + translatedLetter[index]} alt=" "/>)
-            console.log(translatedSentence);
+            translatedSentence.push(<img src={imageSource + translatedLetter} alt=" "></img>)
             //translatedSentence.push(translatedLetter)
         }
+        
+        console.log(translatedSentence);
         //for(const [value] of translatedSentence.entries()) {
         //    images.push(<img src={imageSource + value} alt=" "/>)
         //}
-    }
-
-    const handleImageRender = () => {
-        
     }
 
     return (
@@ -54,10 +51,16 @@ const Translation = (props) => {
                 }>
                     Translate
             </button>
-
-            <span>
+            <div>
                 {translatedSentence}
-            </span>
+                {/*
+                <ul>
+                    {translatedSentence.map((value, index) => {
+                        return <li key={index}>{value}</li>
+                    })}
+                </ul>
+                */}
+            </div>
         </form>
     )
 
