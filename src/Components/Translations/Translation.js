@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Translation = (props) => {
+    const username = useSelector(state => state.user.value.username);
+    console.log(username)
+
     const [translation, setTranslation] = useState("");
     const [translatedSentence, setTrancelatedSentence] = useState([]);
     const dispatch = useDispatch();
@@ -30,6 +33,7 @@ const Translation = (props) => {
             }
             translatedSentence.push({ "id": index, "src": imageSource, "letter": translatedLetter });
             setTrancelatedSentence([...translatedSentence]);
+
         }
         console.log(translatedSentence);
 

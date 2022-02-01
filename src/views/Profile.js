@@ -7,7 +7,7 @@ function Profile() {
     return (
         <div>
             <h1>Profile</h1>
-            <h5>User: {user.name}</h5>
+            <h5>User: {user.username}</h5>
             <p>Translations: {user.translations}</p>
 
             <div>
